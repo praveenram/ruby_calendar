@@ -1,16 +1,16 @@
-require 'sqlite3'
-require 'fileutils'
+require_relative 'database.rb'
 
-FileUtils.mkdir_p("db")
-FileUtils.touch("db/calendar.db")
+Database.new
 
-db = SQLite3::Database.new('db/calendar.db')
+print "Enter your name: "
+name = gets.chomp
 
-db.execute <<-SQL
-  create table event (
-    id int primary key asc not null,
-    starttime real not null,
-    endtime real not null,
-    name text not null default "Untitled"
-  );
-SQL
+puts <<-CLI
+Welcome to #{name}'s calendar
+=============================
+1. Add Event
+2. Exit
+CLI
+
+print "Choose an option: "
+option = gets.chomp
