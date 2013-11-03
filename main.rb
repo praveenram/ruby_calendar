@@ -1,16 +1,28 @@
 require_relative 'database.rb'
+require_relative 'event.rb'
+require_relative 'menu.rb'
 
-Database.new
+db = Database.new
 
 print "Enter your name: "
 name = gets.chomp
 
-puts <<-CLI
-Welcome to #{name}'s calendar
-=============================
-1. Add Event
-2. Exit
-CLI
+menu = Menu.new
+menu.show name
+option = menu.process_input
 
-print "Choose an option: "
-option = gets.chomp
+if option.to_i == 1
+	new_event = Event.new db
+	p "== New Event =="
+	p "== Enter event details =="
+	print "Enter event name: "
+	event_name = gets.chomp
+	new_event.store(:name, event_name)
+	print "Enter event start time (mm/dd/yyyy hh:mm): "
+	start_time = gets.chomp
+	new_event.store(:start_time, start_time)
+	print "Enter event end time (mm/dd/yyyy hh:mm): "
+	end_time = gets.chomp
+	new_event.store(:end_time, end_time)
+	new_event.save
+end
