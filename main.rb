@@ -12,7 +12,7 @@ menu.show name
 option = menu.process_input
 
 if option.to_i == 1
-	new_event = Event.new db
+	new_event = Event.new
 	p "== New Event =="
 	p "== Enter event details =="
 	print "Enter event name: "

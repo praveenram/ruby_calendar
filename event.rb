@@ -1,7 +1,6 @@
 class Event
-	def initialize db
+	def initialize
 		@event = {}
-		@db = db
 	end
 
 	def store column_name, value
@@ -9,6 +8,7 @@ class Event
 	end
 
 	def save
-		@db.insert_record "events", @event
+		db = Database.new
+		db.insert_record "events", @event
 	end
 end
