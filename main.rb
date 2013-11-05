@@ -2,10 +2,10 @@ require_relative 'database.rb'
 require_relative 'event.rb'
 require_relative 'menu.rb'
 
-db = Database.new
-
-print "Enter your name: "
+print "Enter your name to access your own calendar: "
 name = gets.chomp
+
+db = Database.new name
 
 menu = Menu.new
 menu.show name

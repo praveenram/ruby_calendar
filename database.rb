@@ -3,13 +3,15 @@ require 'fileutils'
 
 class Database
 
-	def initialize
-		unless File.file? "db/calendar.db"
+	def initialize name=nil
+		db_name_suffix = name.empty? ? "" : "_#{name}"
+		db_name = "db/calendar#{db_name_suffix}.db"
+		unless File.file? db_name
 			p "== Creating Database =="
 			FileUtils.mkdir_p("db")
-			FileUtils.touch("db/calendar.db")
+			FileUtils.touch(db_name)
 
-			db = SQLite3::Database.new('db/calendar.db')
+			db = SQLite3::Database.new(db_name)
 
 			p "== Add Event Table =="
 			db.execute <<-SQL
