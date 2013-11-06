@@ -15,4 +15,8 @@ Welcome to #{name}'s calendar
 		option = gets.chomp
 		option
 	end
+
+	def render(&block)
+		yield
+	end
 end
