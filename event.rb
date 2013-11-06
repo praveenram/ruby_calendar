@@ -1,3 +1,6 @@
+require_relative "date.rb"
+
+include DateValidator
 class Event
 	def initialize
 		@event = {}
@@ -8,7 +11,11 @@ class Event
 	end
 
 	def save
-		db = Database.new
-		db.insert_record "events", @event
+		if validate_date @event[:start_time] and validate_date @event[:end_time]
+			db = Database.new
+			db.insert_record "events", @event
+		else
+			p "Invalid Date format please ensure correct format."
+		end
 	end
 end
