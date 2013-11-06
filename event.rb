@@ -18,4 +18,9 @@ class Event
 			p "Invalid Date format please ensure correct format."
 		end
 	end
+
+	def self.all
+		db = Database.new
+		db.select_all "events"
+	end
 end

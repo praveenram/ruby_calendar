@@ -26,3 +26,10 @@ if option.to_i == 1
 	new_event.store(:end_time, end_time)
 	new_event.save
 end
+
+if option.to_i == 2
+	p "id, name, start_date, end_date"
+	Event.all.each do |event|
+		p event
+	end
+end

@@ -36,4 +36,8 @@ class Database
 		values = (column_value_hash.values.map do |key| "'#{key}'" end).join(", ")
 		@@db.execute("INSERT INTO #{table_name} (#{column_names}) VALUES (#{values})")
 	end
+
+	def select_all table_name
+		@@db.execute("SELECT * FROM #{table_name}")
+	end
 end
